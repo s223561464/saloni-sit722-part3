@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-catalog-inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book-catalog-inventory
+  template:
+    metadata:
+      labels:
+        app: book-catalog-inventory
+    spec:
+      containers:
+      - name: book-catalog
+        imagePullPolicy: Never
+        image: s223561464947/saloni:latest  
+        ports:
+        - containerPort: 3002
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://saloni_sit722_part3_user:suhhSE6DM9Jd4AJ1BXeGwWBcSCORUfPM@dpg-crfdmg5ds78s73cl8q7g-a.oregon-postgres.render.com/saloni_sit722_part3"
+      - name: inventory-management
+        image: 223561464947/saloni:latest  
+        ports:
+        - containerPort: 3002
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://saloni_sit722_part3_user:suhhSE6DM9Jd4AJ1BXeGwWBcSCORUfPM@dpg-crfdmg5ds78s73cl8q7g-a.oregon-postgres.render.com/saloni_sit722_part3"

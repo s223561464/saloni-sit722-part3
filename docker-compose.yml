@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  book_catalog:
+    image: book_catalog_image
+    build:
+      context: ./book_catalog  
+      dockerfile: Dockerfile
+    container_name: book_catalog  
+    ports:
+      - "4000:4000"  
+    environment:
+      - PORT=4000
+      - DATABASE_URL=postgresql://sit722_task7_2p_user:ox6WIMgJ1udVaUY0uQHb79dGynFPLh@dpg-cr45d588fa8c73dgrs7g-a.singapore-postgres.render.com/sit722_task7_2p
+
+  inventory_management:
+    image: inventory_management_image
+    build:
+      context: ./inventory_management  
+      dockerfile: Dockerfile
+    container_name: inventory_management  
+    ports:
+      - "5000:5000"  
+    environment:
+      - PORT=5000
+      - DATABASE_URL=postgresql://sit722_task7_2p_user:ox6WIMgJ1udVaUY0uQHb79dGynFPLh@dpg-cr45d588fa8c73dgrs7g-a.singapore-postgres.render.com/sit722_task7_2p
+    restart: "no"
+
